@@ -1,0 +1,66 @@
+<!Doctype html>
+<html>
+
+	<head>
+		<title>Snow !</title>
+		<style>
+		html {
+			background: url(xmastree.jpg);
+			background-size: cover;
+		}
+
+		#greeting, #name {
+			font-family: monospace;
+			text-align:center;
+			color: salmon;
+			font-size:50px;
+			position:absolute;
+			text-shadow:5px 5px 10px salmon;
+			width:100%;
+		}
+
+		@-webkit-keyframes snow {
+		  from {top:-1%;}
+		  to {top:101%;}
+		}
+
+		@-moz-keyframes snow {
+		  from {top:-1%;}
+		  to {top:101%;}
+		}
+		</style> s
+	</head>
+
+	<body>
+		<div id="snowflake">
+			<div id="greeting">Merry Christmas & Best Wishes<div id="name"></div></div>
+		</div>
+		<script>
+			document.getElementById("name").innerText = window.location.hash.slice(1);
+			var container;
+			var timeChoices;
+
+			function init() {
+				container = document.getElementById("snowflake");
+				window.setInterval(createParticle,10); 
+				timeChoices = [4,5,6,7,8,9,10,11];}
+
+			function destroy(evt) {
+				container.removeChild(evt.target);}
+
+			function createParticle() {
+				var particle = document.createElement("span");
+				var randomSpeed = timeChoices[Math.floor(Math.random()*timeChoices.length)];
+				particle.innerHTML = "❄️";
+				particle.style.position = "absolute";
+				particle.style.right = Math.random()*100 + "%";
+				particle.style.WebkitAnimation = "snow " + randomSpeed + "s linear";
+				particle.style.MozAnimation = "snow " + randomSpeed + "s linear";
+				container.appendChild(particle);
+				particle.addEventListener("webkitAnimationEnd", destroy);
+				particle.addEventListener("animationend", destroy);}
+			window.onload = init;
+		</script>
+	</body>
+
+</html>
