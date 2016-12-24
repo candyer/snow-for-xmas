@@ -1,15 +1,13 @@
+
 <!Doctype html>
 <html>
 
 	<head>
-		<title>Snow !</title>
+		<title>Snow-xmas</title>
 		<style>
 		html {
-/* 			background: url(xmastree.jpg) no-repeat center center fixed; */
-			background: url(xmastree.jpg);
-			background-size: cover;
+			background-color: black;
 		}
-
 		#greeting, #name {
 			font-family: monospace;
 			text-align:center;
@@ -20,14 +18,29 @@
 			width:100%;
 		}
 
+		#tree-box {
+			z-index: -1;
+			position: fixed;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			text-align: center;
+		}
+
+		#tree {
+			max-width: 100%;
+			max-height: 100%;
+		}
+
 		@-webkit-keyframes snow {
-		  from {top:-1%;}
-		  to {top:101%;}
+		  from {top:1%;}
+		  to {top:95%;}
 		}
 
 		@-moz-keyframes snow {
-		  from {top:-1%;}
-		  to {top:101%;}
+		  from {top:1%;}
+		  to {top:95%;}
 		}
 		</style> s
 	</head>
@@ -36,6 +49,7 @@
 		<div id="snowflake">
 			<div id="greeting">Merry Christmas & Best Wishes<div id="name"></div></div>
 		</div>
+		<div id="tree-box"><img id="tree" src="xmastree.jpg" /></div>
 		<script>
 			document.getElementById("name").innerText = window.location.hash.slice(1);
 			var container;
@@ -53,6 +67,10 @@
 				var particle = document.createElement("span");
 				var randomSpeed = timeChoices[Math.floor(Math.random()*timeChoices.length)];
 				particle.innerHTML = "❄️";
+				particle.style.color = "white";
+				particle.style.width = "5px";
+				particle.style.height = "5px";
+				particle.style.backgroundColor = "transparent";
 				particle.style.position = "absolute";
 				particle.style.right = Math.random()*100 + "%";
 				particle.style.WebkitAnimation = "snow " + randomSpeed + "s linear";
